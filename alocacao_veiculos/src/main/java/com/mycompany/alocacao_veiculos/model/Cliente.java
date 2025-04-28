@@ -1,14 +1,4 @@
 package com.mycompany.alocacao_veiculos.model;
-<<<<<<< HEAD
-
-public class Cliente {
-    private long cpf_cli;
-    private String nom_cli;
-    private String end_cli;
-    private String tel_cli;
-    private String email_cli;
-=======
->>>>>>> b0cda9d7821387826d92e95653d2845027dda02d
 
 public class Cliente {
     private long cpfCliente;

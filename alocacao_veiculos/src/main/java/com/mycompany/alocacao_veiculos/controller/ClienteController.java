@@ -1,46 +1,57 @@
 package com.mycompany.alocacao_veiculos.controller;
 
-<<<<<<< HEAD
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-=======
+import java.util.List;
+
 import com.mycompany.alocacao_veiculos.model.Cliente;
->>>>>>> b0cda9d7821387826d92e95653d2845027dda02d
+import com.mycompany.alocacao_veiculos.model.dao.ClienteDAO;
 
 /**
  *
  * @author hitallo
  */
 public class ClienteController {
-<<<<<<< HEAD
-=======
-    public Cliente createCliente(
-            long cpfCliente, 
-            String nomeCliente, 
-            String enderecoCliente, 
-            String telefoneCliente, 
-            String emailCliente
+
+    private ClienteDAO clienteDao;
+    
+    public ClienteController(ClienteDAO clienteDao){
+        this.clienteDao = clienteDao;
+    }
+
+    public void createCliente(
+            long cpf, 
+            String nome, 
+            String endereco, 
+            String telefone, 
+            String email
     ){
-        throw new Error("not implemented");
+        
+        try {
+            Cliente newCliente = new Cliente(cpf, nome, endereco, telefone, email);
+            this.clienteDao.save(newCliente);
+        } catch (Error err){
+            System.out.println("Erro ao criar cliente: " + err.getMessage());
+        }
     }
     
     public Cliente updateCliente(){
         throw new Error("not implemented");
     }
     
-    public void deleteCliente(long cpfCliente){
+    public void deleteCliente(long cpf){
+  
         throw new Error("not implemented");
     }
     
     public List<Cliente> findAllCliente(){
-        throw new Error("not implemented");
+        List<Cliente> clientes;
+        
+        clientes = this.clienteDao.getAll();
+        
+        return clientes;
     }
     
     public Cliente findClienteByCPF(long cpfCliente){
         throw new Error("not implemented");
     }
->>>>>>> b0cda9d7821387826d92e95653d2845027dda02d
     
 }
