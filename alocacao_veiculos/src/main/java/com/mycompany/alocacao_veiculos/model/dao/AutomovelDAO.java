@@ -1,43 +1,37 @@
-import com.mycompany.alocacao_veiculos.model.Automovel;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-public class AutomovelDAO implements Dao<Automovel> {
-    
-    private List<Automovel> Automovels = new ArrayList<>();
+public class AutomovelDao implements Dao<Automovel> {
+    private List<Automovel> automoveis = new ArrayList<>();
 
-    public AutomovelDao() {
-        Automovels.add(new Automovel("John", "john@domain.com"));
-        Automovels.add(new Automovel("Susan", "susan@domain.com"));
-    }
-    
     @Override
     public Optional<Automovel> get(long id) {
-        return Optional.ofNullable(Automovels.get((int) id));
+        return automoveis.stream()
+            .filter(automovel -> automovel.getModelo() != null && automovel.getModelo().hashCode() == id)
+            .findFirst();
     }
-    
+
     @Override
     public List<Automovel> getAll() {
-        return Automovels;
+        return new ArrayList<>(automoveis);
     }
-    
+
     @Override
     public void save(Automovel automovel) {
-        Automovels.add(automovel);
+        automoveis.add(automovel);
     }
-    
+
     @Override
     public void update(Automovel automovel, String[] params) {
-        automovel.setModelo(Objects.requireNonNull(
-          params[0], "Name cannot be null"));
-        automovel.setQuilometragem(Objects.requireNonNull(
-          params[1], "Email cannot be null"));
-        automovel.setValor_locacao(Objects.requireNonNull(
-            params[2], "Email cannot be null"));
-          
-        Automovels.add(automovel);
+        if (params.length >= 2) {
+            automovel.setquilometragemAutomovel(Long.parseLong(params[0]));
+            automovel.setvalorLocacaoAutomovel(Double.parseDouble(params[1]));
+        }
     }
-    
+
     @Override
     public void delete(Automovel automovel) {
-        Automovels.remove(automovel);
+        automoveis.remove(automovel);
     }
 }

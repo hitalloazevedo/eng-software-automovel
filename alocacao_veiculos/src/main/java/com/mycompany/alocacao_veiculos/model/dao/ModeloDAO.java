@@ -1,27 +1,35 @@
-public class Modelo {
-    private String descricao;
-    
-    // Atributos das Associacoes
-    private Marca marca;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-    public Modelo(String descricao) {
-        this.descricao = descricao;
-    }
-    
-    public String conModelo(){
-        return this.toString();
-    }
+public class ModeloDao implements Dao<Modelo> {
+    private List<Modelo> modelos = new ArrayList<>();
 
-    public Marca getMarca() {
-        return marca;
-    }
-
-    public void setMarca(Marca marca) {
-        this.marca = marca;
-    }
-    
     @Override
-    public String toString() {
-        return "Modelo{" + "descricao=" + descricao + '}';
-    }    
+    public Optional<Modelo> get(long id) {
+        if (id >= 0 && id < modelos.size()) {
+            return Optional.of(modelos.get((int) id));
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Modelo> getAll() {
+        return new ArrayList<>(modelos);
+    }
+
+    @Override
+    public void save(Modelo modelo) {
+        modelos.add(modelo);
+    }
+
+    @Override
+    public void update(Modelo modelo, String[] params) {
+        System.out.println("Atualização de Modelo não implementada (falta setter para descricaoModelo).");
+    }
+
+    @Override
+    public void delete(Modelo modelo) {
+        modelos.remove(modelo);
+    }
 }

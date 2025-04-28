@@ -1,46 +1,39 @@
-import java.sql.Time;
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-public class Locacao {
-    private Date dt_locacao;
-    private Time hora_locacao;
-    private Date dt_devolucao;
-    private Time hora_devolucao;
-    private long quilometragem;
-    private double valor_caucao;
-    private double valor_locacao;
-    private int devolvido;
+public class LocacaoDao implements Dao<Locacao> {
+    private List<Locacao> locacoes = new ArrayList<>();
 
-    public Locacao(Date dt_locacao, Time hora_locacao, long quilometragem, double valor_caucao) {
-        this.dt_locacao = dt_locacao;
-        this.hora_locacao = hora_locacao;
-        this.quilometragem = quilometragem;
-        this.valor_caucao = valor_caucao;
-    }
-
-    public void setDt_devolucao(Date dt_devolucao) {
-        this.dt_devolucao = dt_devolucao;
-    }
-
-    public void setHora_devolucao(Time hora_devolucao) {
-        this.hora_devolucao = hora_devolucao;
-    }
-
-    public void setValor_locacao(double valor_locacao) {
-        this.valor_locacao = valor_locacao;
-    }
-
-    public void setDevolvido(int devolvido) {
-        this.devolvido = devolvido;
-    }
-
-    public int regLoc(){
-        // Nao sei o que esse metodo deveria fazer...
-        return 1;
-    }
-    
     @Override
-    public String toString() {
-        return "Locacao{" + "dt_locacao=" + dt_locacao + ", hora_locacao=" + hora_locacao + ", dt_devolucao=" + dt_devolucao + ", hora_devolucao=" + hora_devolucao + ", quilometragem=" + quilometragem + ", valor_caucao=" + valor_caucao + ", valor_locacao=" + valor_locacao + ", devolvido=" + devolvido + '}';
-    }    
+    public Optional<Locacao> get(long id) {
+        // Como Locacao não tem ID único, apenas um get simulando pelo índice
+        if (id >= 0 && id < locacoes.size()) {
+            return Optional.of(locacoes.get((int) id));
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Locacao> getAll() {
+        return new ArrayList<>(locacoes);
+    }
+
+    @Override
+    public void save(Locacao locacao) {
+        locacoes.add(locacao);
+    }
+
+    @Override
+    public void update(Locacao locacao, String[] params) {
+        if (params.length >= 2) {
+            locacao.setvalorLocacao(Double.parseDouble(params[0]));
+            locacao.setlocacaoDevolvida(Boolean.parseBoolean(params[1]));
+        }
+    }
+
+    @Override
+    public void delete(Locacao locacao) {
+        locacoes.remove(locacao);
+    }
 }

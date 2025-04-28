@@ -1,16 +1,35 @@
-public class Marca {
-    private String descricao;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-    public Marca(String descricao) {
-        this.descricao = descricao;
-    }
-    
-    public String conMarca(){
-        return this.toString();
+public class MarcaDao implements Dao<Marca> {
+    private List<Marca> marcas = new ArrayList<>();
+
+    @Override
+    public Optional<Marca> get(long id) {
+        if (id >= 0 && id < marcas.size()) {
+            return Optional.of(marcas.get((int) id));
+        }
+        return Optional.empty();
     }
 
     @Override
-    public String toString() {
-        return "Marca{" + "descricao=" + descricao + '}';
-    }    
+    public List<Marca> getAll() {
+        return new ArrayList<>(marcas);
+    }
+
+    @Override
+    public void save(Marca marca) {
+        marcas.add(marca);
+    }
+
+    @Override
+    public void update(Marca marca, String[] params) {
+        System.out.println("Atualização de Marca não implementada (falta setter).");
+    }
+
+    @Override
+    public void delete(Marca marca) {
+        marcas.remove(marca);
+    }
 }
