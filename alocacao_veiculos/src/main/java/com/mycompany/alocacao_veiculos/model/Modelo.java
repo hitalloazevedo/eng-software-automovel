@@ -1,13 +1,13 @@
 package com.mycompany.alocacao_veiculos.model;
 
 public class Modelo {
-    private String descricao;
+    private String descricaoModelo;
     
     // Atributos das Associacoes
     private Marca marca;
 
-    public Modelo(String descricao) {
-        this.descricao = descricao;
+    public Modelo(String descricaoModelo) {
+        this.descricaoModelo = descricaoModelo;
     }
     
     public String conModelo(){
@@ -24,6 +24,6 @@ public class Modelo {
     
     @Override
     public String toString() {
-        return "Modelo{" + "descricao=" + descricao + '}';
+        return "Modelo{" + "descricaoModelo=" + descricaoModelo + '}';
     }    
 }

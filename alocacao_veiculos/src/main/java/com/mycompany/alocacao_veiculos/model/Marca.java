@@ -1,18 +1,24 @@
 package com.mycompany.alocacao_veiculos.model;
+<<<<<<< HEAD
 
 public class Marca {
     private String descricao;
+=======
+>>>>>>> b0cda9d7821387826d92e95653d2845027dda02d
 
-    public Marca(String descricao) {
-        this.descricao = descricao;
+public class Marca {
+    private String descricaoMarca;
+
+    public Marca(String descricaoMarca) {
+        this.descricaoMarca = descricaoMarca;
     }
     
-    public String conMarca(){
+    public String consultarMarca(){
         return this.toString();
     }
 
     @Override
     public String toString() {
-        return "Marca{" + "descricao=" + descricao + '}';
+        return "Marca{" + "descricaoMarca=" + descricaoMarca + '}';
     }    
 }

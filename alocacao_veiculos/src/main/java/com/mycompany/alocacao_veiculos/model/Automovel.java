@@ -1,6 +1,7 @@
 package com.mycompany.alocacao_veiculos.model;
 
 public class Automovel {
+<<<<<<< HEAD
     private String placa;
     private String cor;
     private int nroPortas;
@@ -88,6 +89,41 @@ public class Automovel {
 
     public void setRenavam(long renavam) {
         this.renavam = renavam;
+=======
+    private String placaAutomovel;
+    private String corAutomovel;
+    private int numeroPortasAutomovel;
+    private int tipoCombustivelAutomovel;
+    private long quilometragemAutomovel;
+    private long renavamAutomovel;
+    private String chassiAutomovel;
+    private double valorLocacaoAutomovel;
+    
+    // atributos das Associacoes
+    private Modelo modelo;
+
+    public Automovel(String placaAutomovel, String corAutomovel, int numeroPortasAutomovel, int tipoCombustivelAutomovel, long quilometragemAutomovel, long renavamAutomovel, String chassiAutomovel, double valorLocacaoAutomovel) {
+        this.placaAutomovel = placaAutomovel;
+        this.corAutomovel = corAutomovel;
+        this.numeroPortasAutomovel = numeroPortasAutomovel;
+        this.tipoCombustivelAutomovel = tipoCombustivelAutomovel;
+        this.quilometragemAutomovel = quilometragemAutomovel;
+        this.renavamAutomovel = renavamAutomovel;
+        this.chassiAutomovel = chassiAutomovel;
+        this.valorLocacaoAutomovel = valorLocacaoAutomovel;
+    }
+
+    public void setquilometragemAutomovel(long quilometragemAutomovel) {
+        this.quilometragemAutomovel = quilometragemAutomovel;
+    }
+
+    public void setvalorLocacaoAutomovel(double valorLocacaoAutomovel) {
+        this.valorLocacaoAutomovel = valorLocacaoAutomovel;
+    }
+
+    public double getvalorLocacaoAutomovel() {
+        return valorLocacaoAutomovel;
+>>>>>>> b0cda9d7821387826d92e95653d2845027dda02d
     }
 
     public String getChassi() {
@@ -119,6 +155,7 @@ public class Automovel {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "Automovel{" +
                 "placa='" + placa + '\'' +
                 ", cor='" + cor + '\'' +
@@ -141,3 +178,8 @@ public class Automovel {
         ELETRICO
     }
 }
+=======
+        return "Automovel{" + "placaAutomovel=" + placaAutomovel + ", corAutomovel=" + corAutomovel + ", numeroPortasAutomovel=" + numeroPortasAutomovel + ", tipoCombustivelAutomovel=" + tipoCombustivelAutomovel + ", quilometragemAutomovel=" + quilometragemAutomovel + ", renavamAutomovel=" + renavamAutomovel + ", chassiAutomovel=" + chassiAutomovel + ", valorLocacaoAutomovel=" + valorLocacaoAutomovel + '}';
+    }    
+}
+>>>>>>> b0cda9d7821387826d92e95653d2845027dda02d
