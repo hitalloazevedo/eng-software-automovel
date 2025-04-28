@@ -1,3 +1,5 @@
+package com.mycompany.alocacao_veiculos.model;
+
 public class Automovel {
     private String placaAutomovel;
     private String corAutomovel;

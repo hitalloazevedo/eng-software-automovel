@@ -1,3 +1,5 @@
+package com.mycompany.alocacao_veiculos.model;
+
 public class Cliente {
     private long cpfCliente;
     private String nomeCliente;

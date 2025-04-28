@@ -1,3 +1,5 @@
+package com.mycompany.alocacao_veiculos.model.dao;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

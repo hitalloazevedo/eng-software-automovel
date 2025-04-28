@@ -1,3 +1,5 @@
+package com.mycompany.alocacao_veiculos.model.dao;
+
 public interface Dao<T> {
     
     Optional<T> get(long id);
