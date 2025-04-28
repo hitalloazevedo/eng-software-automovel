@@ -7,7 +7,13 @@ import com.mycompany.alocacao_veiculos.model.Cliente;
  * @author hitallo
  */
 public class ClienteController {
-    public Cliente createCliente(){
+    public Cliente createCliente(
+            long cpfCliente, 
+            String nomeCliente, 
+            String enderecoCliente, 
+            String telefoneCliente, 
+            String emailCliente
+    ){
         throw new Error("not implemented");
     }
     
@@ -26,6 +32,5 @@ public class ClienteController {
     public Cliente findClienteByCPF(long cpfCliente){
         throw new Error("not implemented");
     }
-    
     
 }
