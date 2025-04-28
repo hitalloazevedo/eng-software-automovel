@@ -36,10 +36,11 @@ public class ClienteController {
     
     public Cliente updateCliente(long cpf, String email, String telefone, String endereco){
         Optional<Cliente> oldCliente = this.clienteDao.get(cpf);
-        if (oldCliente.isPresent()){
-            
+        if (oldCliente.isEmpty()){
+            throw new Error("usuário não encontrado.");
         }
-        throw new Error("not implemented");
+        Cliente novoCliente = new Cliente(cpf, oldCliente.get().getNome(), endereco, telefone, endereco);
+        return novoCliente;
     }
     
     public void deleteCliente(Long cpf){

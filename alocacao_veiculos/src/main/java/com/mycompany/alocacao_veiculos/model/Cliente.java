@@ -23,6 +23,11 @@ public class Cliente {
         return this.cpfCliente;
     }
     
+    public String getNome(){
+        return nomeCliente;
+    }
+   
+    
     @Override
     public String toString() {
         return "Cliente{" + "cpfCliente=" + cpfCliente + ", nomeCliente=" + nomeCliente + ", enderecoCliente=" + enderecoCliente + ", telefoneCliente=" + telefoneCliente + ", emailCliente=" + emailCliente + '}';
