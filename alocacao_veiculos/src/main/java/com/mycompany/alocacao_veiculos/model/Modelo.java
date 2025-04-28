@@ -1,3 +1,5 @@
+package com.mycompany.alocacao_veiculos.model;
+
 public class Modelo {
     private String descricao;
     

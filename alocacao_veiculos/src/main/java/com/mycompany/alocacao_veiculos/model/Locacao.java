@@ -1,3 +1,5 @@
+package com.mycompany.alocacao_veiculos.model;
+
 import java.sql.Time;
 import java.sql.Date;
 
