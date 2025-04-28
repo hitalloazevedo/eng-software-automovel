@@ -1,24 +1,24 @@
 public class Cliente {
-    private long cpf_cli;
-    private String nom_cli;
-    private String end_cli;
-    private String tel_cli;
-    private String email_cli;
+    private long cpfCliente;
+    private String nomeCliente;
+    private String enderecoCliente;
+    private String telefoneCliente;
+    private String emailCliente;
 
-    public Cliente(long cpf_cli, String nom_cli, String end_cli, String tel_cli, String email_cli) {
-        this.cpf_cli = cpf_cli;
-        this.nom_cli = nom_cli;
-        this.end_cli = end_cli;
-        this.tel_cli = tel_cli;
-        this.email_cli = email_cli;
+    public Cliente(long cpfCliente, String nomeCliente, String enderecoCliente, String telefoneCliente, String emailCliente) {
+        this.cpfCliente = cpfCliente;
+        this.nomeCliente = nomeCliente;
+        this.enderecoCliente = enderecoCliente;
+        this.telefoneCliente = telefoneCliente;
+        this.emailCliente = emailCliente;
     }
 
-    public String conCli(){
+    public String consultarCliente(){
         return this.toString();
     }
     
     @Override
     public String toString() {
-        return "Cliente{" + "cpf_cli=" + cpf_cli + ", nom_cli=" + nom_cli + ", end_cli=" + end_cli + ", tel_cli=" + tel_cli + ", email_cli=" + email_cli + '}';
+        return "Cliente{" + "cpfCliente=" + cpfCliente + ", nomeCliente=" + nomeCliente + ", enderecoCliente=" + enderecoCliente + ", telefoneCliente=" + telefoneCliente + ", emailCliente=" + emailCliente + '}';
     }    
 }

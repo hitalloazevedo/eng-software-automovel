@@ -1,11 +1,11 @@
 public class Modelo {
-    private String descricaoModelo;
+    private String descricao;
     
     // Atributos das Associacoes
     private Marca marca;
 
-    public Modelo(String descricaoModelo) {
-        this.descricaoModelo = descricaoModelo;
+    public Modelo(String descricao) {
+        this.descricao = descricao;
     }
     
     public String conModelo(){
@@ -22,6 +22,6 @@ public class Modelo {
     
     @Override
     public String toString() {
-        return "Modelo{" + "descricaoModelo=" + descricaoModelo + '}';
+        return "Modelo{" + "descricao=" + descricao + '}';
     }    
 }

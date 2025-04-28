@@ -1,16 +1,16 @@
 public class Marca {
-    private String descricao;
+    private String descricaoMarca;
 
-    public Marca(String descricao) {
-        this.descricao = descricao;
+    public Marca(String descricaoMarca) {
+        this.descricaoMarca = descricaoMarca;
     }
     
-    public String conMarca(){
+    public String consultarMarca(){
         return this.toString();
     }
 
     @Override
     public String toString() {
-        return "Marca{" + "descricao=" + descricao + '}';
+        return "Marca{" + "descricaoMarca=" + descricaoMarca + '}';
     }    
 }
