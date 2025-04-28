@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mycompany.alocacao_veiculos.model.Cliente;
 import com.mycompany.alocacao_veiculos.model.dao.ClienteDAO;
+import java.util.Optional;
 
 /**
  *
@@ -33,13 +34,18 @@ public class ClienteController {
         }
     }
     
-    public Cliente updateCliente(){
+    public Cliente updateCliente(long cpf, String email, String telefone, String endereco){
+        Optional<Cliente> oldCliente = this.clienteDao.get(cpf);
+        if (oldCliente.isPresent()){
+            
+        }
         throw new Error("not implemented");
     }
     
-    public void deleteCliente(long cpf){
+    public void deleteCliente(Cliente cliente){
+        
+        this.clienteDao.delete(cliente);
   
-        throw new Error("not implemented");
     }
     
     public List<Cliente> findAllCliente(){
@@ -50,8 +56,11 @@ public class ClienteController {
         return clientes;
     }
     
-    public Cliente findClienteByCPF(long cpfCliente){
-        throw new Error("not implemented");
+    public Cliente findClienteByCPF(long cpf){
+        Optional<Cliente> cliente = this.clienteDao.get(cpf);
+        if (cliente.isPresent()){
+            return cliente;
+        }
     }
     
 }
