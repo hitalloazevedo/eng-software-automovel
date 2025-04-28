@@ -12,7 +12,7 @@ import java.util.Optional;
  */
 public class ClienteController {
 
-    private ClienteDAO clienteDao;
+    private final ClienteDAO clienteDao;
     
     public ClienteController(ClienteDAO clienteDao){
         this.clienteDao = clienteDao;
@@ -42,9 +42,9 @@ public class ClienteController {
         throw new Error("not implemented");
     }
     
-    public void deleteCliente(Cliente cliente){
+    public void deleteCliente(Long cpf){
         
-        this.clienteDao.delete(cliente);
+        this.clienteDao.delete(cpf);
   
     }
     

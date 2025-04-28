@@ -1,14 +1,17 @@
 package com.mycompany.alocacao_veiculos.model.dao;
 
+import com.mycompany.alocacao_veiculos.model.Automovel;
+import com.mycompany.alocacao_veiculos.model.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-public class AutomovelDao implements Dao<Automovel> {
+public class AutomovelDao implements Dao<Automovel, Long> {
     private List<Automovel> automoveis = new ArrayList<>();
 
     @Override
-    public Optional<Automovel> get(long id) {
+    public Optional<Automovel> get(Long id) {
         return automoveis.stream()
             .filter(automovel -> automovel.getModelo() != null && automovel.getModelo().hashCode() == id)
             .findFirst();
@@ -33,7 +36,8 @@ public class AutomovelDao implements Dao<Automovel> {
     }
 
     @Override
-    public void delete(Automovel automovel) {
-        automoveis.remove(automovel);
+    public void delete(Long id) {
+        List<Automoveis> collect = this.automoveis.stream().filter(cliente -> cliente.get() != id).collect(Collectors.toList());
+        this.clientes = collect;
     }
 }

@@ -4,12 +4,13 @@ import com.mycompany.alocacao_veiculos.model.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-public class ClienteDAO implements Dao<Cliente> {
+public class ClienteDAO implements Dao<Cliente, Long> {
     private List<Cliente> clientes = new ArrayList<>();
 
     @Override
-    public Optional<Cliente> get(long id) {
+    public Optional<Cliente> get(Long id) {
         return clientes.stream()
             .filter(cliente -> cliente.toString().contains(String.valueOf(id)))
             .findFirst();
@@ -33,7 +34,8 @@ public class ClienteDAO implements Dao<Cliente> {
     }
 
     @Override
-    public void delete(Cliente cliente) {
-        clientes.remove(cliente);
+    public void delete(Long id) {
+        List<Cliente> collect = clientes.stream().filter(cliente -> cliente.getCpf() != id).collect(Collectors.toList());
+        this.clientes = collect;
     }
 }

@@ -3,15 +3,15 @@ package com.mycompany.alocacao_veiculos.model.dao;
 import java.util.List;
 import java.util.Optional;
 
-public interface Dao<T> {
+public interface Dao<Entity, IdType> {
     
-    Optional<T> get(long id);
+    Optional<Entity> get(IdType id);
     
-    List<T> getAll();
+    List<Entity> getAll();
     
-    void save(T t);
+    void save(Entity entity);
     
-    void update(T t, String[] params);
+    void update(Entity entity, String[] params);
     
-    void delete(T t);
+    void delete(IdType id);
 }
