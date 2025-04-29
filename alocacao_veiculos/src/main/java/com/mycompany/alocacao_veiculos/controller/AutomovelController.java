@@ -1,7 +1,8 @@
 package com.mycompany.alocacao_veiculos.controller;
 
 import com.mycompany.alocacao_veiculos.model.Automovel;
-import com.mycompany.alocacao_veiculos.dao.AutomovelDAO;
+import com.mycompany.alocacao_veiculos.model.Automovel.TipoCombustivel;
+import com.mycompany.alocacao_veiculos.model.dao.AutomovelDAO;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +18,8 @@ public class AutomovelController {
     }
 
     // CREATE
-    public void createAutomovel(String placa, String cor, int nroPortas, String tipoCombustivel,
-                                 double quilometragem, String renavam, String chassi, double valorLocacao) {
+    public void createAutomovel(String placa, String cor, int nroPortas, int tipoCombustivel,
+                                long quilometragem, long renavam, String chassi, double valorLocacao) {
         if (placa == null || placa.isEmpty()) {
             throw new IllegalArgumentException("A placa não pode ser nula ou vazia.");
         }
@@ -51,8 +52,8 @@ public class AutomovelController {
     }
 
     // UPDATE
-    public void updateAutomovel(String placa, String cor, int nroPortas, String tipoCombustivel,
-                                double quilometragem, String renavam, String chassi, double valorLocacao) {
+    public void updateAutomovel(String placa, String cor, int nroPortas, TipoCombustivel tipoCombustivel,
+                                long quilometragem, long renavam, String chassi, double valorLocacao) {
         if (placa == null || placa.isEmpty()) {
             throw new IllegalArgumentException("A placa não pode ser nula ou vazia.");
         }
