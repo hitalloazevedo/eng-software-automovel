@@ -58,9 +58,7 @@ public class ClienteController {
     
     public Optional<Cliente> findClienteByCPF(long cpf){
         Optional<Cliente> cliente = this.clienteDao.get(cpf);
-        if (cliente.isPresent()){
-            return cliente;
-        }
+        return cliente;
     }
     
 }
