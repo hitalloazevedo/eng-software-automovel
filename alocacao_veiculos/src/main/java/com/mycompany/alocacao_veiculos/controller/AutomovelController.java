@@ -1,84 +1,78 @@
-import java.util.ArrayList;
-import java.util.Optional;
+package com.mycompany.alocacao_veiculos.controller;
+
 import com.mycompany.alocacao_veiculos.model.Automovel;
-import com.mycompany.alocacao_veiculos.model.dao.AutomovelDao;
+import com.mycompany.alocacao_veiculos.dao.AutomovelDAO;
 
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * Controller para gerenciar operações relacionadas a Automóveis.
+ */
 public class AutomovelController {
+    private AutomovelDAO automovelDAO;
 
-    AutomovelDao automovelDAO = new AutomovelDao();
+    public AutomovelController() {
+        this.automovelDAO = new AutomovelDAO();
+    }
 
-    public Automovel createAutomovel(
-        String placaAutomovel,
-        String corAutomovel,
-        int numeroPortasAutomovel,
-        int tipoCombustivelAutomovel,
-        long quilometragemAutomovel,
-        long renavamAutomovel,
-        String chassiAutomovel,
-        double valorLocacaoAutomovel
-    ) {
+    // CREATE
+    public void createAutomovel(String placa, String cor, int nroPortas, String tipoCombustivel,
+                                 double quilometragem, String renavam, String chassi, double valorLocacao) {
+        if (placa == null || placa.isEmpty()) {
+            throw new IllegalArgumentException("A placa não pode ser nula ou vazia.");
+        }
+        Automovel automovel = new Automovel(placa, cor, nroPortas, tipoCombustivel, quilometragem, renavam, chassi, valorLocacao);
         try {
-            Automovel automovel = new Automovel(
-                placaAutomovel, corAutomovel, numeroPortasAutomovel,
-                tipoCombustivelAutomovel, quilometragemAutomovel,
-                renavamAutomovel, chassiAutomovel, valorLocacaoAutomovel
-            );
             automovelDAO.save(automovel);
-            return automovel;
         } catch (Exception e) {
-            System.out.println("Erro ao criar automóvel: " + e.getMessage());
-            return null;
+            throw new RuntimeException("Erro ao salvar o automóvel: " + e.getMessage(), e);
         }
     }
 
-    public boolean updateAutomovel(String placaAutomovel, long novaQuilometragem, double novoValorLocacao) {
+    // READ
+    public List<Automovel> listAutomoveis() {
         try {
-            Optional<Automovel> optAuto = findAutomovelByPlaca(placaAutomovel);
-            if (optAuto.isPresent()) {
-                String[] params = {
-                    String.valueOf(novaQuilometragem),
-                    String.valueOf(novoValorLocacao)
-                };
-                automovelDAO.update(optAuto.get(), params);
-                return true;
-            } else {
-                System.out.println("Automóvel com placa " + placaAutomovel + " não encontrado.");
-                return false;
-            }
+            return automovelDAO.findAll();
         } catch (Exception e) {
-            System.out.println("Erro ao atualizar automóvel: " + e.getMessage());
-            return false;
+            throw new RuntimeException("Erro ao listar automóveis: " + e.getMessage(), e);
         }
     }
 
-    public boolean deleteAutomovel(String placaAutomovel) {
+    public Optional<Automovel> findAutomovelByPlaca(String placa) {
+        if (placa == null || placa.isEmpty()) {
+            throw new IllegalArgumentException("A placa não pode ser nula ou vazia.");
+        }
         try {
-            Optional<Automovel> optAuto = findAutomovelByPlaca(placaAutomovel);
-            if (optAuto.isPresent()) {
-                automovelDAO.delete(optAuto.get());
-                return true;
-            } else {
-                System.out.println("Automóvel com placa " + placaAutomovel + " não encontrado para exclusão.");
-                return false;
-            }
+            return Optional.ofNullable(automovelDAO.findByPlaca(placa));
         } catch (Exception e) {
-            System.out.println("Erro ao excluir automóvel: " + e.getMessage());
-            return false;
+            throw new RuntimeException("Erro ao buscar o automóvel pela placa: " + e.getMessage(), e);
         }
     }
 
-    public Optional<Automovel> findAutomovelByPlaca(String placaAutomovel) {
-        ArrayList<Automovel> autoList = new ArrayList<>(automovelDAO.getAll());
-
-        for (Automovel auto : autoList) {
-            if (auto.toString().contains(placaAutomovel)) {
-                return Optional.of(auto);
-            }
+    // UPDATE
+    public void updateAutomovel(String placa, String cor, int nroPortas, String tipoCombustivel,
+                                double quilometragem, String renavam, String chassi, double valorLocacao) {
+        if (placa == null || placa.isEmpty()) {
+            throw new IllegalArgumentException("A placa não pode ser nula ou vazia.");
         }
-        return Optional.empty();
+        Automovel automovel = new Automovel(placa, cor, nroPortas, tipoCombustivel, quilometragem, renavam, chassi, valorLocacao);
+        try {
+            automovelDAO.update(automovel);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao atualizar o automóvel: " + e.getMessage(), e);
+        }
     }
 
-    public ArrayList<Automovel> listAllAutomoveis() {
-        return new ArrayList<>(automovelDAO.getAll());
+    // DELETE
+    public void deleteAutomovel(String placa) {
+        if (placa == null || placa.isEmpty()) {
+            throw new IllegalArgumentException("A placa não pode ser nula ou vazia.");
+        }
+        try {
+            automovelDAO.deleteByPlaca(placa);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao deletar o automóvel: " + e.getMessage(), e);
+        }
     }
 }
