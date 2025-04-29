@@ -1,10 +1,11 @@
 package com.mycompany.alocacao_veiculos.model.dao;
 
+import com.mycompany.alocacao_veiculos.model.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ClienteDao implements Dao<Cliente> {
+public class ClienteDAO implements Dao<Cliente> {
     private List<Cliente> clientes = new ArrayList<>();
 
     @Override
